@@ -11,11 +11,12 @@ In "mediawiki files" folder there is one file named LocalSettings.php. I used th
 
 Here are features you can achieve using this package.
 
-- Logout D -> MW
+
 - Login MediaWiki -> Drupal
 - Logout MediaWiki -> Drupal
+- Logout Drupal -> MediaWiki
 - Group -> Roles from MediaWiki -> Drupal
-- account creation in MediaWiki -> Drupal
+- Account Creation in MediaWiki -> Drupal
 - Single Sign-On
 
 Important:

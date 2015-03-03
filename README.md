@@ -13,6 +13,7 @@ Here are features you can achieve using this package.
 
 
 - Login MediaWiki -> Drupal
+- Login Drupal -> MediaWiki
 - Logout MediaWiki -> Drupal
 - Logout Drupal -> MediaWiki
 - Group -> Roles from MediaWiki -> Drupal

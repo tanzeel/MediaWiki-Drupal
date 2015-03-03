@@ -1,0 +1,61 @@
+<!-- distributed with AuthDrupal v 0.7, 2010-0303 -->
+
+If you are reading this in an INSTALL.txt file, then these instructions are for
+the version of the files you have.
+
+The latest version of these instructions and of the code can be found at
+[http://www.mediawiki.org/w/index.php?title=Extension:AuthDrupal].
+
+* download the AuthDrupal files and save or unpack them into
+  wiki/extensions/AuthDrupal/
+
+* put mediawikiauth.module, mediawikiauth.info, and a copy of AuthDrupalEncode.php into
+  drupal/sites/all/modules/mediawikiauth (yes, you want AuthDrupalEncode.php in both places).
+
+* Add code in AddToLocalSettings.php to the end of your wiki/LocalSettings.php
+  file. Change the database settings to match your setup.
+  
+  Change the cookie domain name  to the domain under which your Drupal and wiki
+  are hosted.  If you're running this on localhost, leave the cookiedomain blank.
+  ($wgCookieDomain = '')
+
+  If drupal and mediawiki use the same database, just set
+  $wgAuthDrupal_UseExtDatabase = false and ignore most of the  _MySQL_ settings.
+
+* You need to assign a key to use to encode the username to prevent spoofing.
+  Make up a key string (something unique, think of it as a password) and set
+  the same value for wgAuthDrupal_security_key in both LocalSettings.php
+  and mediawikiauth.module.
+  
+* Edit the other settings at the top of mediawikiauth.module so that each item matches
+  what you have set in LocalSettings.php. If you have multiple wikis sharing
+  the same Drupal login, create a block of settings for each wiki. If you only
+  have one wiki, delete the second example settings.
+
+* To get rid of the "You must log in to edit pages" notice when a non-logged-in
+  user clicks the Edit tab, do the following:
+
+  ** Go to the article called "MediaWiki:Whitelistedittext".
+  ** The edit box should be preloaded with this text: "You have to $1 to edit
+     pages."
+  ** Change this to the following (replace the url with whatever you've set for
+     $wgAuthDrupal_LoginURL):
+
+     You have to <span class="plainlinks">[http://mydomain.com log in]</span> to edit pages.
+
+* go into Drupal admin pages and enable the Mediawiki module
+
+Things should work at this point. If behavior is funny at first, delete the
+cookies for your domain, and try it again with a fresh start.
+
+Optional parts:
+
+* you may want to ensure that account creation is blocked. Try going to
+  /wiki/index.php?title=Special:Userlogin&type=signup
+  (TODO: document how to turn off account creation)
+
+* even though the extension can change the login/logout link to point to Drupal,
+  that does not stop a savvy user from going to Special:Userlogin directly. You
+  may want to edit .htaccess to redirect that URL. There are instructions for
+  this at the bottom of this page:
+  [http://wiki.case.edu/CaseWiki:External_Authentication]
